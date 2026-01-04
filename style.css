@@ -1,0 +1,329 @@
+/* :root defines global variables that we can use throughout our CSS */
+:root {
+    /* A gradient colors from blue to purple */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Semi-transparent white for the glass effect background */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    /* Subtle white border for glass effect */
+    --glass-border: rgba(255, 255, 255, 0.2);
+    /* Variables for text colors */
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    /* Accent color (gold) for icons */
+    --accent-color: #ffd700;
+    /* Font family variable */
+    --font-family: 'Outfit', sans-serif;
+}
+
+/* The '*' selector resets everything. We remove default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    /* Ensures padding and border are included in the element's total width/height */
+    box-sizing: border-box;
+}
+
+/* Styles for the body */
+body {
+    font-family: var(--font-family);
+    background: var(--primary-gradient);
+    /* Use at least the full height of the viewport */
+    min-height: 100vh;
+    color: var(--text-primary);
+    /* Centering content using Flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Prevent horizontal scrollbar */
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+/* Main container style */
+.app-container {
+    width: 100%;
+    /* Limits width so it looks like a mobile/card app on desktop */
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* Space between elements */
+}
+
+/* Header styles */
+.app-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.app-header h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* Adds a subtle shadow to text for better readability */
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Glassmorphism Utilities --- */
+/* This class creates the 'frosted glass' look */
+.glass-card {
+    background: var(--glass-bg);
+    /* Blurs the background behind the element */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    /* For Safari support */
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    /* Rounded corners */
+    padding: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    /* Drop shadow */
+}
+
+/* --- Search Section --- */
+.search-bar {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effects */
+}
+
+/* When the user clicks inside the search bar */
+.search-bar:focus-within {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.search-bar input {
+    flex: 1;
+    /* Takes up remaining space */
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 0 10px;
+    font-family: var(--font-family);
+    outline: none;
+    /* Removes default browser outline outline */
+}
+
+/* Styling the placeholder text in the input */
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-bar button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+    /* Smooth color change on hover */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Weather Display --- */
+/* Animation for when weather data appears */
+.weather-display {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.weather-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#city-name {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.badge {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 300;
+}
+
+/* Container for Temp and Icon */
+.weather-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
+}
+
+.temp-container {
+    position: relative;
+}
+
+/* Gradient text for temperature */
+.temp-value {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    /* Makes the text have a gradient fill */
+    background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.temp-unit {
+    font-size: 2rem;
+    position: absolute;
+    top: 10px;
+    right: -25px;
+    color: var(--text-secondary);
+}
+
+.weather-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.weather-icon-container i {
+    font-size: 4rem;
+    color: var(--accent-color);
+    /* Adds a glowing effect to the icon */
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+#weather-description {
+    text-transform: capitalize;
+    /* Capitalizes first letter of each word */
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+/* --- Details Grid (Humidity, Wind, etc) --- */
+.weather-details-grid {
+    display: grid;
+    /* Creates 3 columns of equal width */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.detail-item i {
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.detail-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-info .label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.detail-info .value {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* --- Loading & Error Helpers --- */
+/* Utility class to hide elements */
+.hidden {
+    display: none !important;
+}
+
+.error-card {
+    text-align: center;
+    background: rgba(255, 50, 50, 0.2);
+    /* Reddish background for error */
+    border-color: rgba(255, 100, 100, 0.3);
+}
+
+.error-card i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* CSS Loader Animation */
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    /* Applies the rotation animation infinitely */
+    animation: rotation 1s linear infinite;
+    margin: 2rem auto;
+    display: block;
+}
+
+/* Keyframes for the spinner rotation */
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Keyframes for fading in elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Media Queries for Mobile Responsiveness --- */
+@media (max-width: 400px) {
+
+    /* Stack weather info vertically on very small screens */
+    .weather-main {
+        flex-direction: column-reverse;
+        /* Put icon on top */
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .temp-unit {
+        right: -15px;
+    }
+}

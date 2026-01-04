@@ -1,0 +1,128 @@
+<!-- This tells the browser that this is an HTML5 document -->
+<!DOCTYPE html>
+<!-- The root element of our page, set to English language -->
+<html lang="en">
+
+<head>
+    <!-- Sets the character encoding to UTF-8 to support all characters -->
+    <meta charset="UTF-8">
+    <!-- Ensures the page looks good on mobile devices (responsive) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title that appears in the browser tab -->
+    <title>Weather Dashboard</title>
+
+    <!-- Preconnecting to Google Fonts servers to speed up font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Loading the 'Outfit' font family from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Linking our external CSS file where all our styles are -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Linking Font Awesome library to use icons (cloud, sun, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Main container to center our app and control its width -->
+    <div class="app-container">
+
+        <!-- Header section with the app title -->
+        <header class="app-header">
+            <!-- Main heading with an icon -->
+            <h1><i class="fa-solid fa-cloud-bolt"></i> Atmos</h1>
+        </header>
+
+        <!-- Main content area -->
+        <main>
+            <!-- Search section where user enters the city -->
+            <section class="search-section">
+                <!-- Wrapper for input and button -->
+                <div class="search-bar">
+                    <!-- Input field for typing city name. 'autocomplete=off' prevents browser history popup -->
+                    <input type="text" id="city-input" placeholder="Search for a city..." autocomplete="off">
+                    <!-- Button to trigger the search -->
+                    <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <!-- Container for search suggestions (currently unused but good for future) -->
+                    <div id="search-suggestions" class="suggestions-dropdown hidden"></div>
+                </div>
+            </section>
+
+            <!-- Weather display section. 'hidden' class keeps it invisible until we have data -->
+            <section class="weather-display hidden" id="weather-container">
+                <!-- The main glass card showing current weather -->
+                <div class="current-weather glass-card">
+                    <!-- Top part showing City Name and Date -->
+                    <div class="weather-header">
+                        <div class="location-badges">
+                            <!-- We will insert the city name here using JavaScript -->
+                            <h2 id="city-name">--</h2>
+                            <!-- We will insert the current date here -->
+                            <span class="badge" id="current-date">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Middle part with huge temperature and icon -->
+                    <div class="weather-main">
+                        <div class="temp-container">
+                            <!-- Temperature value -->
+                            <span id="temperature" class="temp-value">--</span><span class="temp-unit">°C</span>
+                        </div>
+                        <div class="weather-icon-container">
+                            <!-- Dynamic Icon will be updated by JS -->
+                            <i class="fa-solid fa-sun" id="weather-icon"></i>
+                            <!-- Text description like "Clear Sky" -->
+                            <p id="weather-description">--</p>
+                        </div>
+                    </div>
+
+                    <!-- Bottom grid with extra details (Humidity, Wind, Feels Like) -->
+                    <div class="weather-details-grid">
+                        <!-- Detail Item: Humidity -->
+                        <div class="detail-item">
+                            <i class="fa-solid fa-droplet"></i>
+                            <div class="detail-info">
+                                <span class="label">Humidity</span>
+                                <span class="value" id="humidity">--%</span>
+                            </div>
+                        </div>
+                        <!-- Detail Item: Wind Speed -->
+                        <div class="detail-item">
+                            <i class="fa-solid fa-wind"></i>
+                            <div class="detail-info">
+                                <span class="label">Wind Speed</span>
+                                <span class="value" id="wind-speed">-- km/h</span>
+                            </div>
+                        </div>
+                        <!-- Detail Item: Feels Like -->
+                        <div class="detail-item">
+                            <i class="fa-solid fa-eye"></i>
+                            <div class="detail-info">
+                                <span class="label">Feels Like</span>
+                                <span class="value" id="feels-like">--°</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error message section, hidden by default -->
+            <section class="error-container hidden" id="error-message">
+                <div class="glass-card error-card">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <p id="error-text">City not found. Please try again.</p>
+                </div>
+            </section>
+
+            <!-- Loading spinner, hidden by default -->
+            <section class="loading-container hidden" id="loading-indicator">
+                <div class="loader"></div>
+            </section>
+        </main>
+    </div>
+    <!-- Link to our JavaScript file at the end so HTML loads first -->
+    <script src="script.js"></script>
+</body>
+
+</html>

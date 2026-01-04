@@ -1,0 +1,33 @@
+OUR PROJECT'S API: OPEN-METEO
+
+In this project, we are using a free and open-source weather service called "Open-Meteo". We use it in two steps because it doesn't give weather directly for a city *name*—it needs *coordinates* (latitude & longitude).
+
+----------------------------------------------
+STEP 1: THE GEO-LOCATOR (Finding the City)
+----------------------------------------------
+*   **The Problem:** The weather service doesn't know where "London" is. It only understands numbers like "Lat: 51.5, Lon: -0.12".
+*   **The Solution:** We use the Geocoding API first.
+*   **How it works in our code:**
+    1.  User types "London".
+    2.  We send a message to: `https://geocoding-api.open-meteo.com...`
+    3.  It replies: "London is at 51.5085° N, -0.1257° W".
+
+----------------------------------------------
+STEP 2: THE WEATHER MAN (Getting the Data)
+----------------------------------------------
+*   **The Problem:** Now we have the numbers, but we still don't know if it's raining.
+*   **The Solution:** We use the Forecast API.
+*   **How it works in our code:**
+    1.  We take those coordinates from Step 1.
+    2.  We send a message to: `https://api.open-meteo.com...` asking for:
+        - Current Temperature
+        - Humidity
+        - Wind Speed
+        - Weather Code (is it sunny/raining?)
+    3.  It replies with the raw data: `{ temperature: 15, wind: 10, ... }`.
+
+----------------------------------------------
+WHY THIS API?
+----------------------------------------------
+1.  **No API Key Needed:** Most weather APIs (like OpenWeatherMap) make you focus on signing up and hiding secret keys. Open-Meteo is free and public, making it perfect for learning.
+2.  **Fast:** It's very quick to reply.

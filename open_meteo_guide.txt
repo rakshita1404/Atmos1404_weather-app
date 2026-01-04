@@ -1,0 +1,52 @@
+GUIDE: HOW TO EXPLORE OPEN-METEO API YOURSELF
+
+Follow these steps to generate your own API links and see how they work.
+
+-------------------------------------------------------
+PART 1: THE WEATHER FORECAST API
+-------------------------------------------------------
+1.  **Visit the Website:**
+    Go to: https://open-meteo.com/
+
+2.  **Scroll to "Weather Forecast":**
+    You will see a form with a map and check boxes.
+
+3.  **Select Location:**
+    - It might auto-detect your location.
+    - Or you can search for a city (e.g., "Berlin") in the search bar on the map.
+
+4.  **Choose Your Variables:**
+    - Scroll down to "Hourly Weather Variables" or "Current Weather Variables".
+    - Check the boxes for data you want (e.g., "Temperature (2 m)", "Wind Speed (10 m)").
+    - *Tip:* For our project, we mostly used "Current Weather" options.
+
+5.  **Generate the URL:**
+    - Scroll down to the bottom of the section.
+    - You will see a box labeled "API URL".
+    - It looks like: `https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m`
+    - **Click on this link.** It will open a new tab showing the raw JSON data. This is exactly what our JavaScript code reads!
+
+-------------------------------------------------------
+PART 2: THE GEOCODING API (Finding Cities)
+-------------------------------------------------------
+1.  **Go to the Docs:**
+    On the top menu bar, click **"Developers"** -> **"Geocoding API"**.
+    Or go directly to: https://open-meteo.com/en/docs/geocoding-api
+
+2.  **Try the Demo:**
+    - You will see a "API Response" demo box.
+    - You can type a city name in the "Name" field (e.g., "New York").
+
+3.  **See the Result:**
+    - The URL will update instantly below: `https://geocoding-api.open-meteo.com/v1/search?name=New+York&count=10...`
+    - Click it to see the list of cities found with their latitude and longitude.
+
+-------------------------------------------------------
+PRACTICE TASK
+-------------------------------------------------------
+Try to make a URL that gets the weather for "Tokyo".
+1. Note Tokyo's Lat/Lon (35.6895, 139.6917).
+2. Go to the main page.
+3. Enter those coordinates manually or search "Tokyo".
+4. Check "Temperature" and "Rain".
+5. Click the generated API URL and see if it says it is raining!
